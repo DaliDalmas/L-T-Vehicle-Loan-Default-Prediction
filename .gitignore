@@ -131,3 +131,7 @@ dmypy.json
 # ignore csv datasets
 *data_dictionary.csv
 *test.csv
+
+catboost_info
+*LightGBM*
+
