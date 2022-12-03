@@ -1,13 +1,14 @@
 <template>
-  <v-container class="question_background"  color="#114856">
-    <v-row class="text-center">
+<div>
+  <v-container class="question-container"  color="#114856" >
+    <v-row class="text-center question-block" v-if="(index>=0)">
       <v-col cols="12">
-       
-      </v-col>
 
+      </v-col>
       <v-col class="mb-4 text-left" color="#114856">
         <p class="subheading font-weight-regular">
-          This is the question this is the question this is the question.
+            {{questions[index].question}}
+            {{len}}
         </p>
     
         <v-textarea
@@ -25,6 +26,7 @@
             fab
             dark
             color="#561F11"
+            @click="goBack"
             >
                 <v-icon dark>
                     mdi-skip-previous
@@ -36,6 +38,7 @@
             fab
             dark
             color="#561F11"
+            @click="goForward"
             >
                 <v-icon dark>
                     mdi-skip-next
@@ -46,11 +49,26 @@
 
     </v-row>
   </v-container>
+</div>
 </template>
 
 <script>
 export default {
-    name: 'HelloWorld',
+    name: 'QuestionContainer',
+    props:['questions', 'len'],
+    data:()=>({
+        index:0
+    }),
+    methods:{
+        goBack: function(){
+            this.index-=1
+            console.log(this.len)
+        },
+        goForward: function(){
+            this.index+=1
+            
+        },      
+    }
 }
 </script>
 
@@ -62,12 +80,14 @@ export default {
     height: 90%;
     color: aliceblue;
 }
-.question_background{
+.question-block{
     background: #114856;
+    border-radius: 25px;
+    padding: 15px;
+}
+.question-container{
     color: aliceblue;
     height: 50%;
     width: 60%;
-    padding: 3%;
-    border-radius: 25px;
 }
 </style>

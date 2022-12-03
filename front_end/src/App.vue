@@ -32,7 +32,7 @@
 
     <v-main>
       <HelloWorld/>
-      <QuestionContainer/>
+      <QuestionContainer :questions="my_questions" :q_len="len"/>
     </v-main>
   </v-app>
 </template>
@@ -40,6 +40,7 @@
 <script>
 import HelloWorld from './components/HelloWorld';
 import QuestionContainer from './components/QuestionContainer';
+import questions from '../questions'
 
 export default {
   name: 'App',
@@ -50,7 +51,8 @@ export default {
   },
 
   data: () => ({
-    //
+    my_questions: questions.individual_questions,
+    len: questions.individual_questions.length
   }),
 };
 </script>
