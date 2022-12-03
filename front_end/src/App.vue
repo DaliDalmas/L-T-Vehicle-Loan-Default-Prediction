@@ -32,18 +32,21 @@
 
     <v-main>
       <HelloWorld/>
+      <QuestionContainer/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import QuestionContainer from './components/QuestionContainer';
 
 export default {
   name: 'App',
 
   components: {
     HelloWorld,
+    QuestionContainer
   },
 
   data: () => ({
