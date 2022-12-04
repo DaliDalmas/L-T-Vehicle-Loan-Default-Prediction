@@ -13,21 +13,24 @@
         </p>
     
         <v-textarea
-        name="input-7-1"
-        filled
-        label="text answer"
-        auto-grow
-        dark
-        value=""
-        class="my-textarea"
-        v-if="questions[index].asnwer_type=='text'"
-        :answer="answer"
+            name="input-7-1"
+            filled
+            label="text answer"
+            auto-grow
+            dark
+            value=""
+            class="my-textarea"
+            v-if="questions[index].asnwer_type=='text'"
+            v-model="answer"
         ></v-textarea>
 
         <v-text-field
-        :rules="rules"
+        v-model="answer"
+        dark
+        class="my-textfield"
         v-if="questions[index].asnwer_type=='float' ||
-              questions[index].asnwer_type=='integer'"></v-text-field>
+              questions[index].asnwer_type=='integer'"
+        ></v-text-field>
 
         <v-date-picker 
         dark
@@ -35,9 +38,8 @@
         v-if="questions[index].asnwer_type=='date'"></v-date-picker>
 
         <v-container fluid v-if="questions[index].asnwer_type=='bool'">
-            <p>{{ radios || 'null' }}</p>
             <v-radio-group
-            v-model="radios"
+            v-model="answer"
             mandatory
             >
             <v-radio
@@ -91,38 +93,42 @@
 export default {
     name: 'QuestionContainer',
     props:['questions', 'question_len'],
-//     created() {
-//     console.log(this.question_len)
-//   },
+    created() {
+    this.answers = this.questions
+  },
     data:()=>({
+        answer:null,
+        // answers:this.questions,
         index:0,
-        rules: [
-        value => !!value || 'Required.',
-        value => (value || '').length <= 20 || 'Max 20 characters',
-      ],
       picker: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-      radios: null
     }),
     methods:{
         goBack: function(){
             if (this.index>0){
                 this.index-=1
+                this.answer = this.answers[this.index]['answer']
             }
-            console.log(this.index)
-
         },
         goForward: function(){
             if (this.index < this.question_len-1){
+                if(this.answers[this.index]['asnwer_type']=='date'){
+                    this.answer = this.picker
+                }
+                this.answers[this.index]['answer'] = this.answer
                 this.index+=1
+                this.answer = this.answers[this.index]['answer'] || null
+            }else{
+                console.log(this.answers)
             }
-            console.log(this.index)
-            console.log(this.question_len)
         },      
     }
 }
 </script>
 
 <style scoped>
+.my-textfield textfield{
+    color:#f0f8ff !important
+}
 .my-textarea textarea { 
     color:#f0f8ff !important
 

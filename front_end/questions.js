@@ -2,8 +2,7 @@ export default{
     "individual_questions":[
         {
             "question":"Applicant's full name",
-            "asnwer_type":"text",
-            "answer":null
+            "asnwer_type":"text"
         },
         {
             "question":"What is the disbursed amount?",
