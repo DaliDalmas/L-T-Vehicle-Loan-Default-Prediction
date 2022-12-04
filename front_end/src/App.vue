@@ -32,7 +32,7 @@
 
     <v-main>
       <HelloWorld/>
-      <QuestionContainer :questions="my_questions" :q_len="len"/>
+      <QuestionContainer :questions="my_questions" :question_len="question_len"/>
     </v-main>
   </v-app>
 </template>
@@ -52,7 +52,10 @@ export default {
 
   data: () => ({
     my_questions: questions.individual_questions,
-    len: questions.individual_questions.length
+    question_len: questions.individual_questions.length
   }),
+  // created() {
+  //   console.log(questions['individual_questions'].length)
+  // }
 };
 </script>

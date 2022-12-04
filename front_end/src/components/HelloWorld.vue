@@ -9,7 +9,7 @@
         <h1 class="display-2 font-weight-bold mb-3 text_primary">
           VEHICLE LOAN DETECTION SYSTEM
         </h1>
-        <p class="subheading font-weight-regular">
+        <p class="subheading font-weight-regular text_primary">
           Answer the questions below to determine if your client is eligible for vehicle loan.
         </p>
       </v-col>
@@ -28,6 +28,6 @@
 
 <style scoped>
 .text_primary{
-  color: #114856;
+  color: #561F11;
 }
 </style>
