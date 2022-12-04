@@ -8,9 +8,9 @@
       <v-col class="mb-4 text-left" color="#114856">
         <p class="subheading font-weight-regular">
             {{questions[index].question}} <br/>
-            --{{questions[index].asnwer_type}}--
-
+            --{{questions[index].asnwer_type}}-- <br/>
         </p>
+        <p v-if="this.index == this.question_len-1">last question</p>
     
         <v-textarea
             name="input-7-1"
@@ -77,9 +77,16 @@
             color="#561F11"
             @click="goForward"
             >
-                <v-icon dark>
+                <v-icon
+                v-if="this.index != this.question_len-1"
+                dark>
                     mdi-skip-next
-            </v-icon>
+                </v-icon>
+                <v-icon
+                v-if="this.index == this.question_len-1"
+                dark>
+                    mdi-send
+                </v-icon>
             </v-btn>
         </v-row>
       </v-col>
@@ -90,6 +97,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     name: 'QuestionContainer',
     props:['questions', 'question_len'],
@@ -119,6 +127,11 @@ export default {
                 this.answer = this.answers[this.index]['answer'] || null
             }else{
                 console.log(this.answers)
+                axios
+                .post('url', this.answers)
+                .then((response)=>(
+                    this.data=response.data
+                ))
             }
         },      
     }
