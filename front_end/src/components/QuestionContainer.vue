@@ -11,7 +11,7 @@
             --{{questions[index].asnwer_type}}-- <br/>
         </p>
         <p v-if="this.index == this.question_len-1">last question</p>
-    
+
         <v-textarea
             name="input-7-1"
             filled
